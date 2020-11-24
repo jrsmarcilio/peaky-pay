@@ -1,7 +1,13 @@
+const validatorCPF = require('ygovalidatorcpf-lib');
 const User = require('../models/User');
 
 class UserController {
   async store(req, res) {
+    // validação de cpf
+    const { cpf } = req.body;
+    if (!validatorCPF(cpf))
+      return res.status(400).json({ error: 'O CPF inválido ' });
+
     // procurar no banco usuário com o e-mail = req.body.email
     const userExists = await User.findOne({ where: { email: req.body.email } });
 

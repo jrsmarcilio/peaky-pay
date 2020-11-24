@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/register.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/register.css" />
     <title>Peaky Pay | Registre-se</title>
-</head>
-<body>
+  </head>
+  <body>
     <form action="/api/users" method="post">
-        <h1>Cadastre-se</h1>
-        <p>
-            <input type="text" name="nome" class="user" placeholder="Digite o seu nome" required>
-        </p>
-        <p>
-            <input type="email" name="email" class="user" placeholder="Digite o seu e-mail" required>
-        </p>
-        <p>
-            <input oninput={mascara(this)} type="text" name="cpf" class="user"placeholder="Digite seu CPF" required>
-        </p>
-        <p>
-            <input type="password" name="password" class="password" placeholder="Digite a sua senha" re>
-        </p>
-        <p>
-            <input type="password" id="confirm_password" class="password" placeholder="Digite novamente a sua senha" required>
-        </p>
-        <p>
-            <button type="submit">Criar Conta</button>
-        </p>
+      <h1>Cadastre-se</h1>
+      <p>
+        <input
+          type="text"
+          name="nome"
+          class="user"
+          placeholder="Digite o seu nome"
+          required
+        />
+      </p>
+      <p>
+        <input
+          type="email"
+          name="email"
+          class="user"
+          placeholder="Digite o seu e-mail"
+          required
+        />
+      </p>
+      <p>
+        <input
+          oninput="{mascara(this)}"
+          type="text"
+          name="cpf"
+          class="user"
+          placeholder="Digite seu CPF"
+          minlength="14"
+          required
+        />
+      </p>
+      <p>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="password"
+          placeholder="Digite a sua senha"
+          re
+        />
+      </p>
+      <p>
+        <input
+          type="password"
+          id="confirm_password"
+          class="password"
+          placeholder="Digite novamente a sua senha"
+          required
+        />
+      </p>
+      <p>
+        <button type="submit">Criar Conta</button>
+      </p>
     </form>
-</body>
-<script>
-/* Mascara para o CPF */
-mascara = (i) => {
-    var v = i.value;
-   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-      i.value = v.substring(0, v.length-1);
-      return;
-   }
-   i.setAttribute("maxlength", "14");
-   if (v.length == 3 || v.length == 7) i.value += ".";
-   if (v.length == 11) i.value += "-";
-}
-34544615
-/* Validação de Password - Quase Funcionando */
-// var password = document.getElementsByTagName("password")
-// var confirm_password = document.getElementById("confirm_password");
+  </body>
+  <script>
+    /* Mascara para o CPF */
+    mascara = (i) => {
+      var v = i.value;
+      if (isNaN(v[v.length - 1])) {
+        /* impede entrar outro caractere que não seja número */
+        i.value = v.substring(0, v.length - 1);
+        return;
+      }
+      i.setAttribute('maxlength', '14');
+      if (v.length == 3 || v.length == 7) i.value += '.';
+      if (v.length == 11) i.value += '-';
+    };
 
-// function validatePassword(){
-//   if(password.value !== confirm_password.value) {
-//     confirm_password.setCustomValidity("Senhas diferentes!");
-//   } else {
-//     confirm_password.setCustomValidity('');
-//   }
-// }
-// password.onchange = validatePassword;
-// confirm_password.onkeyup = validatePassword;
+    /* Validação de Password - Quase Funcionando */
+    var password = document.getElementById('password');
+    var confirm_password = document.getElementById('confirm_password');
+
+    function validatePassword() {
+      if (password.value !== confirm_password.value) {
+        confirm_password.setCustomValidity('Senhas diferentes!');
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
   </script>
 </html>
