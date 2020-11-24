@@ -4,8 +4,7 @@ const User = require('../models/User');
 class UserController {
   async store(req, res) {
     // validação de cpf
-    const { cpf } = req.body;
-    if (!validatorCPF(cpf))
+    if (!validatorCPF(req.body.cpf))
       return res.status(400).json({ error: 'O CPF inválido ' });
 
     // procurar no banco usuário com o e-mail = req.body.email
