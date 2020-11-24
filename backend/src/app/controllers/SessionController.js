@@ -16,7 +16,10 @@ class SessionControler {
       return res.status(401).json({ error: 'senha não corresponde' });
 
     // Se chegou até aqui, deu tudo certo.
+    return res.redirect('/api/');
+    /*
     const { id, nome } = user;
+
 
     return res.json({
       usuario: {
@@ -28,6 +31,7 @@ class SessionControler {
         expiresIn: authConfig.expiresIn,
       }),
     });
+    */
   }
 }
 

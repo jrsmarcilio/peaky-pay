@@ -21,10 +21,6 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      telefone: {
-        type: Sequelize.STRING(13),
-        allowNull: false,
-      },
       password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
